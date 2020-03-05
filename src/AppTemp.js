@@ -3,15 +3,22 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 import Home from './pages/Home'
 import Student from './pages/Student'
-import Login from './pages/Login'
-
-import ProtectedRoute from './utils/ProtectedRoute'
+import Login from './Login'
 
 import { data } from './data/index'
+import ProtectRoute from './ProtectedRoute'
 
 function App() {
   const [auth, setAuth] = useState(false)
 
+  const doLogin = () => {
+    setAuth(true)
+  }
+
+  // 進行登出
+  const doLogout = () => {
+    setAuth(false)
+  }
   return (
     <Router>
       <>
@@ -22,25 +29,23 @@ function App() {
           <li>
             <Link to="/student">學生詳細頁</Link>
           </li>
-          <li>
-            <Link to="/login">登入/登出</Link>
-          </li>
+          {auth && (
+            <li>
+              <Link to="/login">登出入頁</Link>
+            </li>
+          )}
         </ul>
         <div className="container">
           <Switch>
-            <Route path="/login">
-              <Login
-                isAuth={auth}
-                login={() => setAuth(true)}
-                logout={() => setAuth(false)}
-              />
-            </Route>
-            <ProtectedRoute path="/student/:id?">
+            <ProtectRoute path="/student">
               <Student isAuth={auth} />
-            </ProtectedRoute>
-            <ProtectedRoute exact path="/">
+            </ProtectRoute>
+            <Route path="/login">
+              <Login isAuth={auth} doLogin={doLogin} doLogout={doLogout} />
+            </Route>
+            <ProtectRoute exact path="/">
               <Home isAuth={auth} />
-            </ProtectedRoute>
+            </ProtectRoute>
           </Switch>
         </div>
       </>
