@@ -9,8 +9,11 @@ import { Route, Redirect } from 'react-router-dom'
 // 注意Redirect要不同元件間才能作301重新導向
 // props 解構拉出children，和其它的組成一個其餘物件
 const ProtectedRoute = ({ children, ...rest }) => {
-  console.log(children)
-
+  console.log('children', children)
+  //測試 rest 為何物用
+  console.log('rest', rest)
+  rest = { hi: '111', ...rest }
+  console.log('rest', rest)
   return (
     <Route
       {...rest}
@@ -21,7 +24,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
           <Redirect
             to={{
               pathname: '/login',
-              state: { from: props.location },
+              state: { from: props.location, hi: '123' },
             }}
           />
         )
