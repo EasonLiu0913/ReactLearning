@@ -28,34 +28,21 @@ function Menu() {
                 className="nav-link"
                 to="/"
               >
-                首頁
+                產品列表
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
                 activeClassName="active"
                 className="nav-link"
-                to="/productcategory"
+                to="/product"
               >
                 產品
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                activeClassName="active"
-                className="nav-link"
-                to="/about"
-              >
-                關於
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                activeClassName="active"
-                className="nav-link"
-                to="/member"
-              >
-                會員
+              <NavLink activeClassName="active" className="nav-link" to="/cart">
+                購物車
               </NavLink>
             </li>
           </ul>
