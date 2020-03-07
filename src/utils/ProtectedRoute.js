@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
   console.log('children', children)
   //測試 rest 為何物用
   console.log('rest', rest)
-  rest = { hi: '111', ...rest }
+  rest = { abc: '111', ...rest }
   console.log('rest', rest)
   return (
     <Route
